@@ -6,15 +6,18 @@ import "../styles/globals.css";
 import { darkTheme } from "../themes";
 // context
 import { UIProvider } from "../context";
+import { EntriesProvider } from "../context/entries";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UIProvider>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </UIProvider>
+    <EntriesProvider>
+      <UIProvider>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </UIProvider>
+    </EntriesProvider>
   );
 }
 
