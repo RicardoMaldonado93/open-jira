@@ -6,7 +6,7 @@ import { EntryCard } from "./EntryCard";
 // interfaces
 import { EntryStatus } from "../../interfaces/entry";
 // context
-import { EntriesContext } from "../../context/entries";
+import { EntriesContext } from "../../context";
 
 interface Props {
   status: EntryStatus;
