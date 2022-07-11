@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, DragEvent, useContext } from "react";
 // material
 import {
   Card,
@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 // interfaces
 import { IEntry } from "../../interfaces";
+// context
+import { UIContext } from "../../context";
 
 interface Props {
   entry: IEntry;
@@ -17,16 +19,31 @@ interface Props {
 export const EntryCard: FC<Props> = ({ entry }) => {
   const { _id, createAt, description, status } = entry;
 
+  // context
+  const { setIsAddingEntry } = useContext(UIContext)
+
+  const onDragStart = (event: DragEvent<HTMLDivElement>) => {
+    event.dataTransfer.setData("text", entry._id);
+
+    setIsAddingEntry(true)
+    // todo: modify the state to indicate that I do dragging
+  };
+  const onDragEnd = (event: DragEvent<HTMLDivElement>) => {
+    // todo: end drag
+    setIsAddingEntry(false)
+  };
+
   return (
     <Card
       sx={{ marginBottom: 1 }}
       // drag events
+      draggable
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
     >
       <CardActionArea>
         <CardContent>
-          <Typography sx={{ whiteSpace: "pre-line" }}>
-            { description }
-          </Typography>
+          <Typography sx={{ whiteSpace: "pre-line" }}>{description}</Typography>
         </CardContent>
         <CardActions
           sx={{ display: "flex", justifyContent: "end", paddingRight: 2 }}

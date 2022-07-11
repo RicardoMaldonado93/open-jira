@@ -8,7 +8,7 @@ import { UIContext } from "../../context";
 
 export const Navbar = () => {
 
-  const { openSideMenu } = useContext(UIContext)
+  const { setToogleMenu } = useContext(UIContext)
 
   return (
     <AppBar position="sticky">
@@ -16,7 +16,7 @@ export const Navbar = () => {
         <IconButton
           size="large"
           edge="start"
-          onClick={openSideMenu}
+          onClick={()=>setToogleMenu(true)}
         >
           <MenuOutlinedIcon />
         </IconButton>

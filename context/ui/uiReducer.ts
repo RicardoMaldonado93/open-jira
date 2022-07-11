@@ -2,23 +2,19 @@ import { UIState } from "./";
 
 type UIActionType =
   // sidebar
-  | { type: "[UI] - Open Sidebar" }
-  | { type: "[UI] - Close Sidebar" }
+  | { type: "[UI] - Set Toogle Menu"; payload: boolean }
   // entry
-  | { type: "[UI] - Set Adding Entry"; payload: boolean };
+  | { type: "[UI] - Set Adding Entry"; payload: boolean }
+  // drag
+  | { type: "[UI] - Set Dragging Entry"; payload: boolean };
 
 export const uiReducer = (state: UIState, action: UIActionType): UIState => {
   switch (action.type) {
     // sidebar
-    case "[UI] - Open Sidebar":
+    case "[UI] - Set Toogle Menu":
       return {
         ...state,
-        sideMenuOpen: true,
-      };
-    case "[UI] - Close Sidebar":
-      return {
-        ...state,
-        sideMenuOpen: false,
+        isSideMenuOpen: action.payload,
       };
 
     // entry
@@ -26,6 +22,13 @@ export const uiReducer = (state: UIState, action: UIActionType): UIState => {
       return {
         ...state,
         isAddingEntry: action.payload,
+      };
+
+    // dragging
+    case "[UI] - Set Dragging Entry":
+      return {
+        ...state,
+        isDragging: action.payload,
       };
 
     default:

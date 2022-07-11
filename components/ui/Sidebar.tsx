@@ -20,11 +20,14 @@ import { UIContext } from "../../context";
 const MENU_ITEMS = ["Inbox", "Starred", "Send Email", "Drafts"];
 
 export const Sidebar = () => {
-
-  const { sideMenuOpen, closeSideMenu } = useContext( UIContext )
-
+  const { setToogleMenu, isSideMenuOpen } = useContext(UIContext);
+  
   return (
-    <Drawer anchor="left" open={sideMenuOpen} onClose={closeSideMenu}>
+    <Drawer
+      anchor="left"
+      open={isSideMenuOpen}
+      onClose={() => setToogleMenu(false)}
+    >
       <Box sx={{ width: 250 }}>
         <Box sx={{ padding: "5px 10px" }}>
           <Typography variant="h4">Menu</Typography>
@@ -45,15 +48,15 @@ export const Sidebar = () => {
       <Divider />
 
       <List>
-          {MENU_ITEMS.map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 ? <InboxOutlinedIcon /> : <EmailOutlinedIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        {MENU_ITEMS.map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index % 2 ? <InboxOutlinedIcon /> : <EmailOutlinedIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
     </Drawer>
   );
 };
