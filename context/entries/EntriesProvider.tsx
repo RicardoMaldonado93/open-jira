@@ -6,7 +6,6 @@ import { EntriesContext, entriesReducer } from "./";
 import { IEntry } from "../../interfaces/entry";
 // uuid
 import { v4 as uuidv4 } from "uuid";
-import { NewEntry } from "../../components/ui/NewEntry";
 
 export interface EntriesState {
   entries: IEntry[];

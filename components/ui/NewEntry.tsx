@@ -7,23 +7,24 @@ import AddIcon from "@mui/icons-material/AddCircleOutline";
 import SaveIcon from "@mui/icons-material/Save";
 // context
 import { EntriesContext } from "../../context";
+import { UIContext } from "../../context";
 
 export const NewEntry = () => {
   //context
   const { addNewEntry } = useContext(EntriesContext);
+  const { isAddingEntry, setIsAddingEntry } = useContext(UIContext);
   // state
-  const [isAdding, setIsAdding] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [touched, setTouched] = useState(false);
 
   // handlers
   const onClose = () => {
-    setIsAdding(false);
+    setIsAddingEntry(false);
     setInputValue("");
     setTouched(false);
   };
 
-  const onOpen = () => setIsAdding(true);
+  const onOpen = () => setIsAddingEntry(true);
   const onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     setInputValue(value);
   };
@@ -36,7 +37,7 @@ export const NewEntry = () => {
 
   return (
     <Box sx={{ marginBottom: 2, paddingX: 1 }}>
-      {isAdding ? (
+      {isAddingEntry ? (
         <>
           <TextField
             fullWidth
