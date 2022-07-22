@@ -20,17 +20,17 @@ export const EntryCard: FC<Props> = ({ entry }) => {
   const { _id, createAt, description, status } = entry;
 
   // context
-  const { setIsAddingEntry } = useContext(UIContext)
+  const { setIsDragging } = useContext(UIContext)
 
   const onDragStart = (event: DragEvent<HTMLDivElement>) => {
     event.dataTransfer.setData("text", entry._id);
 
-    setIsAddingEntry(true)
+    setIsDragging(true)
     // todo: modify the state to indicate that I do dragging
   };
   const onDragEnd = (event: DragEvent<HTMLDivElement>) => {
     // todo: end drag
-    setIsAddingEntry(false)
+    setIsDragging(false)
   };
 
   return (
