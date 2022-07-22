@@ -54,6 +54,7 @@ export const EntryList: FC<Props> = ({ status, children }) => {
           backgroundColor: "transparent",
           padding: "1px 5px",
         }}
+        className={styles.hideScrollBars}
       >
         <List sx={{ opacity: isDragging ? 0.25 : 1, transition: "300ms" }}>
           {entriesByStatus.map((entry) => (

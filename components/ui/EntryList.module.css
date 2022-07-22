@@ -3,3 +3,11 @@
     border-radius: 16px;
     border: 1px dashed white;
 }
+
+.hideScrollBars {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.hideScrollBars::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
